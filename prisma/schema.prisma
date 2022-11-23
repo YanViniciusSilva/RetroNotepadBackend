@@ -1,0 +1,24 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+model NotepadUsers {
+  UserId      Int      @id(map: "PK_NotepadUsers") @default(autoincrement())
+  Name        String   @db.NVarChar(50)
+  Email       String   @db.NVarChar(100)
+  Password    String   @db.NVarChar(30)
+  Birthday    DateTime @db.Date
+  DateCreated DateTime @db.DateTime
+  AppTheme    Int
+}
+
+model NotepadThemes {
+  ThemeId    Int    @id(map: "PK_NotepadThemes")
+  Theme      String @db.NVarChar(50)
+  ThemeColor String @db.NVarChar(50)
+}
